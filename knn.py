@@ -32,13 +32,13 @@ print(X_train)
 # 10-fold cross validation to estimate accuracy (split data into 10 parts; use 9 parts to train and 1 for test)
 num_folds = 10
 num_instances = len(X_train)
-seed = 7
+seed = 20
 # use the 'accuracy' metric to evaluate models (correct / total)
 scoring = 'accuracy'
 
 results = []
 clf = KNeighborsClassifier()
-kfold = sklearn.model_selection.KFold(n_splits=num_instances,random_state = seed)
+kfold = sklearn.model_selection.KFold(n_splits=num_instances,shuffle=True,random_state = seed)
 cv_results = cross_val_score(clf, X_train, Y_train, cv = kfold, scoring = scoring)
 clf.fit(X_train, Y_train)
 predictions = clf.predict(X_validation)
